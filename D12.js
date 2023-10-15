@@ -15,5 +15,26 @@
 // Explanation: The two input promises resolve with the values of 10 and -12 respectively. The returned promise should resolve with a value of 10 + -12 = -2.
 
 var addTwoPromises = async function(promise1, promise2) {
-    
+  const [v1, v2] = await Promise.all([promise1, promise2])
+
+  return v1 + v2;
 };
+
+// Runtime  64ms
+// Beats 30.69%of users with JavaScript
+
+// Memory  41.83MB
+// Beats 73.14%of users with JavaScript
+
+var addTwoPromises = async function(promise1, promise2) {
+  let sum = 0;
+  sum += await promise1;
+  sum += await promise2;
+  return Promise.resolve(sum);
+};
+
+// Runtime  56ms
+// Beats 74.75%of users with JavaScript
+
+// Memory  41.97MB
+// Beats 61.78%of users with JavaScript
